@@ -1,7 +1,19 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-mongoose.connect(`mongodb+srv://abdul40hadi:<${process.env.PASSWORD}>@mern-blog.m00wv.mongodb.net/?retryWrites=true&w=majority&appName=mern-blog`)
+dotenv.config();
+
+mongoose
+  .connect(process.env.MONGO)
+  .then(() => {
+    console.log('MongoDb is connected');
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+
 const app = express();
 
 app.listen(3000, () => {
